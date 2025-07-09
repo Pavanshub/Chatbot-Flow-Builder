@@ -95,14 +95,16 @@ function FlowBuilder() {
       const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
       
       // Calculate position manually if project function is not available
-      const position = reactFlowInstance.project ? 
-        reactFlowInstance.project({
-          x: event.clientX - reactFlowBounds.left,
-          y: event.clientY - reactFlowBounds.top,
-        }) : {
-          x: event.clientX - reactFlowBounds.left,
-          y: event.clientY - reactFlowBounds.top,
-        };
+      // Manually calculate position using viewport transform
+      const viewport = reactFlowInstance?.toObject().viewport;
+      const x = event.clientX - reactFlowBounds.left;
+      const y = event.clientY - reactFlowBounds.top;
+      const position = viewport
+        ? {
+            x: (x - viewport.x) / viewport.zoom,
+            y: (y - viewport.y) / viewport.zoom,
+          }
+        : { x, y };
 
       const newNode = {
         id: `${Date.now()}`,
