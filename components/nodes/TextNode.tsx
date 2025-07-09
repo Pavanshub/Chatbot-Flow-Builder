@@ -8,7 +8,7 @@ interface TextNodeData {
   text: string;
 }
 
-export function TextNode({ data, selected }: NodeProps<TextNodeData>) {
+export function TextNode({ data, selected }: NodeProps<any>) {
   return (
     <div className={`bg-white rounded-lg border-2 shadow-sm min-w-[200px] transition-all duration-200 ${
       selected ? 'border-blue-500 shadow-md' : 'border-gray-200 hover:border-gray-300'

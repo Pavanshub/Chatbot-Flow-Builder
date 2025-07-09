@@ -14,11 +14,11 @@ interface SettingsPanelProps {
 }
 
 export function SettingsPanel({ node, onUpdateNode, onClose }: SettingsPanelProps) {
-  const [text, setText] = useState(node.data.text || '');
+  const [text, setText] = useState(typeof node.data.text === 'string' ? node.data.text : '');
 
   // Update local state when node changes
   useEffect(() => {
-    setText(node.data.text || '');
+    setText(typeof node.data.text === 'string' ? node.data.text : '');
   }, [node.data.text]);
 
   // Handle text change with immediate update
