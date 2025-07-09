@@ -13,6 +13,7 @@ import {
   Node,
   ReactFlowProvider,
   ReactFlowInstance,
+  NodeTypes,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 
@@ -23,7 +24,7 @@ import { Header } from './Header';
 import { toast } from 'sonner';
 
 // Define node types for extensibility
-const nodeTypes = {
+const nodeTypes: Record<string, React.FC<any>> = {
   textNode: TextNode,
 };
 
